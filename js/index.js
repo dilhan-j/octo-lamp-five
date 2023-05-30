@@ -40,12 +40,12 @@ window.addEventListener('DOMContentLoaded', () => {
       a: 3,
     },
     {
-      q: 'What is the capital of Australia?',
+      q: 'What is the capital of Australia',
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
     },
     {
-      q: 'What is the long river in the world?',
+      q: 'What is the longest river in the world?',
       o: ['The Amazon', 'The Yangtze', 'The Nile', 'The Mississippi-Missouri'],
       a: 2,
     },
@@ -69,14 +69,15 @@ window.addEventListener('DOMContentLoaded', () => {
                     <li class="list-group-item"  id="li_${index}_3"><input type="radio" name="radio${index}" id="radio_${index}_3"> ${quizItem.o[3]}</li>
                     </ul>
                     <div>&nbsp;</div>`;
-      quizWrap.innerHTML = quizDisplay;
+    quizWrap.innerHTML = quizDisplay;
     });
   };
 
   // Calculate the score
   const calculateScore = () => {
     let score = 0;
-    quizArray.map((quizItem, index) => {
+    quizArray.map((quizItem, index) => {    
+      let itemAnswer = 0;
       for (let i = 0; i < 4; i++) {
         //highlight the li if it is the correct answer
         let li = `li_${index}_${i}`;
@@ -86,22 +87,78 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (quizItem.a == i) {
           //change background color of li element here
-          //document.getElementsByClassName(".list-group-item").style.backgroundColor = "lightblue";
-
+          liElement.style.backgroundColor = 'lightblue';
         }
 
         if (radioElement.checked) {
-          // code for task 1 goes here
+          itemAnswer = i;
         }
       }
+        if (itemAnswer === quizItem.a) {
+        score++
+        }
     });
+    // Output score
+    document.querySelector("#score").innerHTML = `&nbsp;&nbsp; Your score is: <strong>${score}</strong> out of 5`;
+ 
+    // console.log(`Your score is: ${score} out of 5`);
   };
+
+  // Run calculateScore when Submit button is clicked
+  const submitBtn = document.getElementById('btnSubmit');
+  submitBtn.addEventListener('click', calculateScore);
+
+  // Quiz timer
+  function quizTimer() {
+    let totalSec = 60;
+    let timerEl = document.getElementById("time");
+    let timerI = setInterval(function() {
+      let min = Math.floor(totalSec / 60);
+      let sec = totalSec % 60;
+      let timeTxt = min + ":" + (sec < 10 ? "0" : "") + sec;
+      timerEl.textContent = timeTxt;
+      if (totalSec <= 0) {
+        clearInterval(timerI);
+        timerEl.textContent = "Time's up!";
+        submitBtn.click();
+      }
+      totalSec--;
+    }, 1000);
+  }
+
+  quizTimer();
+  // // Quiz Timer
+  // const timeDisp = document.querySelector('#time');
+  // let timeRem = 60; // 1:00 minute
+  // const startQuizTimer = () => {
+  //   const timerInt = setInterval(() => {
+  //     const minutes = Math.floor(timeRem / 60);
+  //     const seconds = timeRem % 60;
+  //     timeDisp.innerHTML = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  //     if (timeRem === 0) {
+  //       clearInterval(timerInt);
+  //       submitBtn.click();
+  //     } else {
+  //       timeRem--;
+  //     }
+  //   }, 1000);
+  // };
+
+  // const stopQuizTimer = () => {
+  //   timeDisp.innerHTML = '0:00';
+  // };
+
+  const timeDisp = document.querySelector('#time');
+  let time 
+
 
   // call the displayQuiz function
   displayQuiz();
+  
 });
 
 // Reset Quiz
 function resetQuiz() {
-  window.location.assign("./index.html")
+  window.location.assign("./index.html");
 }
+
