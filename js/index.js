@@ -40,10 +40,20 @@ window.addEventListener('DOMContentLoaded', () => {
       a: 3,
     },
     {
-      q: 'What is the capital of Australia',
+      q: 'What is the capital of Australia?',
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
     },
+    {
+      q: 'What is the long river in the world?',
+      o: ['The Amazon', 'The Yangtze', 'The Nile', 'The Mississippi-Missouri'],
+      a: 2,
+    },
+    {
+      q: 'What is the fastest land animal on Earth?',
+      o: ['Ostrich', 'Pronghorn (American antelope)', 'American Quarter Horse', 'Cheetah'],
+      a: 3,
+    }
   ];
 
   // function to Display the quiz questions and answers from the object
@@ -76,6 +86,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (quizItem.a == i) {
           //change background color of li element here
+          //document.getElementsByClassName(".list-group-item").style.backgroundColor = "lightblue";
+
         }
 
         if (radioElement.checked) {
@@ -88,3 +100,8 @@ window.addEventListener('DOMContentLoaded', () => {
   // call the displayQuiz function
   displayQuiz();
 });
+
+// Reset Quiz
+function resetQuiz() {
+  window.location.assign("./index.html")
+}
