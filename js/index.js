@@ -26,7 +26,7 @@ window.addEventListener('DOMContentLoaded', () => {
   start.addEventListener('click', function (e) {
     document.querySelector('#quizBlock').style.display = 'block';
     start.style.display = 'none';
-    quizTimer();
+    quizTimer(); // Call Quiz timer
   });
   // quizArray QUESTIONS & ANSWERS
   // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
@@ -92,7 +92,7 @@ window.addEventListener('DOMContentLoaded', () => {
           //change background color of li element here
           liElement.style.backgroundColor = 'lightblue';
         }
-
+        // Check if answer is correct and increment score 
         if (radioElement.checked) {
           itemAnswer = i;
         }
@@ -101,7 +101,7 @@ window.addEventListener('DOMContentLoaded', () => {
         score++
         }
     });
-    // Output score
+    // Output score to page
     document.querySelector("#score").innerHTML = `&nbsp;&nbsp; Your score is: <strong>${score}</strong> out of 5`;
     // console.log(`Your score is: ${score} out of 5`);
   };
@@ -113,13 +113,13 @@ window.addEventListener('DOMContentLoaded', () => {
   // Quiz timer
   function quizTimer() {
     let totalSec = 60;
-    let timerEl = document.getElementById("time");
+    let timerEl = document.getElementById("time"); // Target time selector in index.html
     let timerI = setInterval(function() {
       let min = Math.floor(totalSec / 60);
       let sec = totalSec % 60;
-      let timeTxt = min + ":" + (sec < 10 ? "0" : "") + sec;
+      let timeTxt = min + ":" + (sec < 10 ? "0" : "") + sec; // If seconds is less than ten, display an extra zero.
       timerEl.textContent = timeTxt;
-      if (totalSec <= 0) {
+      if (totalSec <= 0) {  // When seconds reach zero, click Submit button to end quiz.
         clearInterval(timerI);
         timerEl.textContent = "Time's up!";
         submitBtn.click();
@@ -132,7 +132,7 @@ window.addEventListener('DOMContentLoaded', () => {
   displayQuiz();
 });
 
-// Reset Quiz
+// Reset Quiz function on button press
 function resetQuiz() {
   window.location.assign("./index.html");
 }
