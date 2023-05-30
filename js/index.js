@@ -19,6 +19,8 @@
       5. Add a countdown timer - when the time is up, end the quiz, display the score and highlight the correct answers
 *************************** */
 
+// Edited by Dilhan J
+
 window.addEventListener('DOMContentLoaded', () => {
   const start = document.querySelector('#start');
   start.addEventListener('click', function (e) {
@@ -100,7 +102,6 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     // Output score
     document.querySelector("#score").innerHTML = `&nbsp;&nbsp; Your score is: <strong>${score}</strong> out of 5`;
- 
     // console.log(`Your score is: ${score} out of 5`);
   };
 
@@ -126,39 +127,11 @@ window.addEventListener('DOMContentLoaded', () => {
     }, 1000);
   }
 
-  quizTimer();
-  // // Quiz Timer
-  // const timeDisp = document.querySelector('#time');
-  // let timeRem = 60; // 1:00 minute
-  // const startQuizTimer = () => {
-  //   const timerInt = setInterval(() => {
-  //     const minutes = Math.floor(timeRem / 60);
-  //     const seconds = timeRem % 60;
-  //     timeDisp.innerHTML = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-  //     if (timeRem === 0) {
-  //       clearInterval(timerInt);
-  //       submitBtn.click();
-  //     } else {
-  //       timeRem--;
-  //     }
-  //   }, 1000);
-  // };
-
-  // const stopQuizTimer = () => {
-  //   timeDisp.innerHTML = '0:00';
-  // };
-
-  const timeDisp = document.querySelector('#time');
-  let time 
-
-
   // call the displayQuiz function
   displayQuiz();
-  
 });
 
 // Reset Quiz
 function resetQuiz() {
   window.location.assign("./index.html");
 }
-
